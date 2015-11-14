@@ -1,4 +1,8 @@
-import React from 'react';
+import React  from 'react';
+
+import Button from './button';
+import Icon   from './icon';
+import VolumeController from './volumecontroller';
 
 require('./app.scss');
 
@@ -7,13 +11,23 @@ export default class App extends React.Component {
 
   }
 
+  startMusic() {
+    console.log('starting');
+  }
+
+  stopMusic() {
+    console.log('stopping');
+  }
+
   render() {
     return (
-      <div>
-        <h1>Music Generator</h1>
+      <div className="app-container">
+        <h1 className="title">Music Generator</h1>
+        <Icon />
+        <VolumeController />
         <div className="buttons">
-          <div className="button">Play</div>
-          <div className="button">Stop</div>
+          <Button value="Jam" handleClick={this.startMusic} />
+          <Button value="Rest" handleClick={this.stopMusic} />
         </div>
       </div>
     )
