@@ -46,6 +46,10 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+/*le google fontz*/
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700);
+
+$lato: 'Lato', sans-serif;
 
 /* colors for extension */
 $purple: #5E2971;         /* rgba( 94, 41,113,1) */
@@ -68,6 +72,7 @@ body {
 
 .app-container-wrapper {
 	height: 100%;
+	font-family: $lato;
 }
 
 .app-container {
@@ -79,7 +84,7 @@ body {
 .title {
   text-align: center;
   font-size: 32px;
-  padding: 12px 0px;
+  padding-top: 32px;
 }
 
 .buttons {
