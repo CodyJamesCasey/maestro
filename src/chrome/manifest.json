@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+
+  "name": "Music Generator",
+  "description": "This extension will procedurally generate music in your browser!",
+  "version": "1.0",
+
+  "browser_action": {
+   "default_icon": "musical176.png",
+   "default_popup": "popup.html"
+  },
+  "permissions": [
+   "activeTab"
+   ]
+}
