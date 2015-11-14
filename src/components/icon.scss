@@ -1,9 +1,11 @@
 .icon-container {
+  position: absolute;
+  top: calc(50% - 64px);
+  width: 100%;
   text-align: center;
-  padding: 80px 0px;
 
   svg {
-    width: 125px;
-    height: 125px;
+    width: 128px;
+    height: 128px;
   }
 }
