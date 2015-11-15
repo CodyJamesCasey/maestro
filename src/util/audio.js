@@ -38,13 +38,6 @@ export function play(pitch, xPercentage, yPercentage) {
   sound.source.loop = false;
 
   // Check if the cache has the current pitch in memory already
-  if (audioCache.has(pitch + dynamicValuesNo)) {
-    let buffer = audioCache.get(pitch + dynamicValuesNo);
-    sound.buffer = buffer;
-    // Make the sound source use the buffer and start playing it
-    sound.source.buffer = buffer;
-    sound.source.start(ctx.currentTime);
-  } else {
     console.log('/samples/mp3piano/Piano.' + dynamicValues[dynamicValuesNo] + '.' + pitch + '.mp3');
 
     let request = new XMLHttpRequest();
@@ -54,8 +47,6 @@ export function play(pitch, xPercentage, yPercentage) {
     request.onload = function(e) {
       // Create a buffer from the response ArrayBuffer.
       ctx.decodeAudioData(this.response, function onSuccess(buffer) {
-        // Store the sound in the audioCache
-        audioCache.set(pitch + dynamicValuesNo, buffer);
         sound.buffer = buffer;
         // Make the sound source use the buffer and start playing it
         sound.source.buffer = buffer;
@@ -65,5 +56,4 @@ export function play(pitch, xPercentage, yPercentage) {
       });
     };
     request.send();
-  }
 };
