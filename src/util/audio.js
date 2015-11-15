@@ -1,6 +1,3 @@
-// A map to keep track of the audio
-const audioCache = new Map();
-
 // Create a new audio context.
 const ctx = new AudioContext();
 ctx.listener.setPosition(0, 0, 0);
@@ -38,22 +35,22 @@ export function play(pitch, xPercentage, yPercentage) {
   sound.source.loop = false;
 
   // Check if the cache has the current pitch in memory already
-    console.log('/samples/mp3piano/Piano.' + dynamicValues[dynamicValuesNo] + '.' + pitch + '.mp3');
+  console.log('/samples/mp3piano/Piano.' + dynamicValues[dynamicValuesNo] + '.' + pitch + '.mp3');
 
-    let request = new XMLHttpRequest();
-    request.open('GET', chrome.extension.getURL('/samples/mp3piano/Piano.' + dynamicValues[dynamicValuesNo] + '.' + pitch + '.mp3'), true);
+  let request = new XMLHttpRequest();
+  request.open('GET', chrome.extension.getURL('/samples/mp3piano/Piano.' + dynamicValues[dynamicValuesNo] + '.' + pitch + '.mp3'), true);
 
-    request.responseType = 'arraybuffer';
-    request.onload = function(e) {
-      // Create a buffer from the response ArrayBuffer.
-      ctx.decodeAudioData(this.response, function onSuccess(buffer) {
-        sound.buffer = buffer;
-        // Make the sound source use the buffer and start playing it
-        sound.source.buffer = buffer;
-        sound.source.start(ctx.currentTime);
-      }, function onFailure() {
-        console.error('Failed to load audio', arguments);
-      });
-    };
-    request.send();
+  request.responseType = 'arraybuffer';
+  request.onload = function(e) {
+    // Create a buffer from the response ArrayBuffer.
+    ctx.decodeAudioData(this.response, function onSuccess(buffer) {
+      sound.buffer = buffer;
+      // Make the sound source use the buffer and start playing it
+      sound.source.buffer = buffer;
+      sound.source.start(ctx.currentTime);
+    }, function onFailure() {
+      console.error('Failed to load audio', arguments);
+    });
+  };
+  request.send();
 };
