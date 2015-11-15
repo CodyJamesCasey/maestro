@@ -1,16 +1,26 @@
-const tempo = 60; // BPM (beats per minute)
+let tempo = 60; // BPM (beats per minute)
 const key = 'Bb'; // Key to determine valid notes.
 let currentKeyArray = [];
-
-const dynamicValues = ['ff','mf', 'pp'];
-const noteValue = ['Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G'];
-const noteLengthValues = [
+let noteLengthValues = [
   60 / (tempo / 4),   //whole
   60 / (tempo / 2),   //half
   60 / tempo,         //quarter
   60 / (tempo / 0.5), //eighth
   60 / (tempo / 0.25) //sixteenth
 ];
+
+const dynamicValues = ['ff','mf', 'pp'];
+const noteValue = ['Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G'];
+
+function setNoteLength() {
+  noteLengthValues = [
+    60 / (tempo / 4),   //whole
+    60 / (tempo / 2),   //half
+    60 / tempo,         //quarter
+    60 / (tempo / 0.5), //eighth
+    60 / (tempo / 0.25) //sixteenth
+  ];
+}
 
 const musicTypes = [
   'note',
@@ -74,7 +84,7 @@ function generateInterval() {
 
   notes.push(generateNote());
   notes.push(generateNote());
-  
+
   return notes;
 }
 
@@ -95,7 +105,6 @@ function generateChord() {
     newNote.note = noteValue[(noteValue.indexOf(root.note) + currentInterval) % noteValue.length];
     newNote.url = getNoteUrl(newNote.note, newNote.octave, newNote.dynamicValue);
     notes.push(newNote);
-    console.log(newNote.note);
   }
 
   return notes;
@@ -104,7 +113,6 @@ function generateChord() {
 export function getMusic() {
   //randomly decide between notes, intervals, and chords
   var musicType = musicTypes[Math.round(Math.random() * (musicTypes.length - 1))];
-  console.log(musicType);
   var music = [];
 
   switch(musicType) {
@@ -120,4 +128,9 @@ export function getMusic() {
   }
 
   return music;
+}
+
+export function setBpm(bpm) {
+  tempo = bpm;
+  setNoteLength();
 }

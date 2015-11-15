@@ -1,4 +1,4 @@
-import { getMusic, generateInKeyNotes, getRandomNoteLength } from './music-generator';
+import {setBpm, getMusic, generateInKeyNotes, getRandomNoteLength } from './music-generator';
 
 // Create a new audio context.
 const ctx = new AudioContext();
@@ -12,6 +12,10 @@ let intervalRef = null;
 
 export function changeVolume(newVolume) {
   mainVolume.gain.value = newVolume;
+}
+
+export function changeBpm(bpm) {
+  setBpm(bpm);
 }
 
 export function stopMusic() {

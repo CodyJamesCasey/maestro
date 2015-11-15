@@ -10,7 +10,8 @@ import SettingsView from './settings-view';
 import Icon   from './icon';
 import SettingsButton from './settings-button';
 import VolumeController from './volumecontroller';
-import { startMusic, stopMusic, changeVolume } from 'util/audio';
+import { startMusic, stopMusic, changeVolume, changeBpm } from 'util/audio';
+
 
 require('./app.scss');
 
@@ -21,7 +22,8 @@ const SETTINGS_VIEW = 'settings';
 export default class App extends React.Component {
 
   state = {
-    view: APP_VIEW
+    view: APP_VIEW,
+    bpm: 60
   }
 
   changeView(view) {
@@ -46,7 +48,7 @@ export default class App extends React.Component {
   }
 
   renderSettings() {
-    return ( <SettingsView changeView={this.changeView.bind(this)}/> );
+    return ( <SettingsView changeView={this.changeView.bind(this)} changeBpm={changeBpm.bind(this)} />);
   }
 
   render() {
