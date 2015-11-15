@@ -21,7 +21,7 @@ export default class App extends React.Component {
   }
 
   party = () => {
-    play('C4', -100 + (Math.random() * 200));  
+    play('C4', -100 + (Math.random() * 200), -100 + (Math.random() * 200), -100 + (Math.random() * 200));  
   }
 
   render() {
