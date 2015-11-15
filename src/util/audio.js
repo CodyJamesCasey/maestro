@@ -24,7 +24,7 @@ export function play(pitch, xPercentage, yPercentage ) {
   sound.panner.connect(mainVolume);
   // Setup the audio position of the sound
   //set z index to zero for 2d sound
-  sound.panner.setPosition(xPercentage / 100, yPercentage / 100, 0);
+  sound.panner.setPosition(xPercentage / 100, yPercentage / 100, 0.5);
   console.log("x percentage: ", xPercentage / 100);
   console.log("y percentage: ", yPercentage / 100);
   console.log("pitch number: ", pitch);
@@ -43,7 +43,7 @@ export function play(pitch, xPercentage, yPercentage ) {
 
     let request = new XMLHttpRequest();
     request.open('GET', chrome.extension.getURL('/samples/mp3piano/Piano.' + fortissimo[fortissimoNo] + '.' + pitch + '.mp3'), true);
-    
+
     request.responseType = 'arraybuffer';
     request.onload = function(e) {
       // Create a buffer from the response ArrayBuffer.
