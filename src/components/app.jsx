@@ -7,6 +7,7 @@ const ThemeManager = require('material-ui/lib/styles/theme-manager');
 const ThemeDecorator = require('material-ui/lib/styles/theme-decorator');
 
 import Icon   from './icon';
+import SettingsButton from './settings-button';
 import VolumeController from './volumecontroller';
 import { startMusic, stopMusic, changeVolume } from 'util/audio';
 
@@ -18,6 +19,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="app-container">
+        <SettingsButton />
         <h1 className="title">Maestro</h1>
         <Icon />
         <VolumeController changeVolume={changeVolume} />

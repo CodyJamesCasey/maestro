@@ -1,3 +1,13 @@
+/* colors for extension */
+$purple: #5E2971;         /* rgba( 94, 41,113,1) */
+$gray: #7A797B;           /* rgba(122,121,123,1) */
+$gray-purple: #6C4F76;    /* rgba(108, 79,118,1) */
+$darker-purple: #51056C;  /* rgba( 81,  5,108,1) */
+$darkest-purple: #4C0067; /* rgba( 76,  0,103,1) */
+
+/* Color template by Paletton.com Â© 2002-2014 */
+/* http://paletton.com */
+
 .icon {
   position: absolute;
   top: calc(50% - 64px);
@@ -7,5 +17,24 @@
   svg {
     width: 128px;
     height: 128px;
+  }
+}
+
+.settings-button {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+
+  svg {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+
+    &:hover {
+      fill: $gray;
+    }
   }
 }
