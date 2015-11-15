@@ -7,6 +7,16 @@ const mainVolume = ctx.createGain();
 mainVolume.connect(ctx.destination);
 var dynamicValues = ['ff','mf', 'pp'];
 
+var tempo = 60; // BPM (beats per minute)
+
+var noteLengthValues = [
+  60 / (tempo / 4),   //whole
+  60 / (tempo / 2),   //half
+  60 / tempo,         //quarter
+  60 / (tempo / 0.5), //eighth
+  60 / (tempo / 0.25) //sixteenth
+]
+
 let intervalRef = null;
 
 export function changeVolume(newVolume) {
@@ -19,15 +29,18 @@ export function stopMusic() {
 
 export function startMusic() {
 
-  var tempo = 120; // BPM (beats per minute)
-  var quarterNoteTime = 60 / tempo;
-
   intervalRef = setInterval( () => {
-    play('C4', -100 + (Math.random() * 200), -100 + (Math.random() * 200), ctx.currentTime);
-  }, quarterNoteTime * 1000);
+    play('C4', -100 + (Math.random() * 200), -100 + (Math.random() * 200), ctx.currentTime, ctx.currentTime + getRandomNoteValue());
+  }, getRandomNoteValue());
 }
 
-function play(pitch, xPercentage, yPercentage, time) {
+function getRandomNoteValue() {
+  const noteLen = noteLengthValues[Math.floor(Math.random() * 5)];
+  console.log(noteLen);
+  return noteLen * 1000;
+}
+
+function play(pitch, xPercentage, yPercentage, startTime, endTime) {
   // Create an object with a sound source and a volume control.
   const sound = {
     source: ctx.createBufferSource(),
@@ -57,7 +70,8 @@ function play(pitch, xPercentage, yPercentage, time) {
       sound.buffer = buffer;
       // Make the sound source use the buffer and start playing it
       sound.source.buffer = buffer;
-      sound.source.start(time);
+      sound.source.start(startTime);
+      sound.source.stop(endTime);
     }, function onFailure() {
       console.error('Failed to load audio', arguments);
     });
