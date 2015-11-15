@@ -8,7 +8,7 @@ ctx.listener.setPosition(0, 0, 0);
 const mainVolume = ctx.createGain();
 // Connect the main volume node to the context destination.
 mainVolume.connect(ctx.destination);
-
+var fortissimo = ['ff','mf', 'pp'];
 export function play(pitch, xPercentage, yPercentage, zPercentage ) {
   // Create an object with a sound source and a volume control.
   const sound = {
@@ -40,7 +40,9 @@ export function play(pitch, xPercentage, yPercentage, zPercentage ) {
   } else {
     let request = new XMLHttpRequest();
     request.open('GET', chrome.extension.getURL('/samples/mp3piano/Piano.ff.' + pitch + '.mp3'), true);
-    console.log('/samples/mp3piano/Piano.ff.' + pitch + '.mp3');
+    let fortissimoNo = Math.round((Math.random()*2));
+    console.log( fortissimoNo );
+    console.log('/samples/mp3piano/Piano.' + fortissimo[fortissimoNo] + '.' + pitch + '.mp3');
     request.responseType = 'arraybuffer';
     request.onload = function(e) {
       // Create a buffer from the response ArrayBuffer.
