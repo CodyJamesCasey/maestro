@@ -2,6 +2,8 @@
 procedurally generate music in your browser!
 
 TODOS
-- Shail:
-  - Figure out how to pan the audio (left to right)
+- Loop audio
+- tempo audio after looping
+- Every quarter note new note
+- setting menu to adjust parameters
   
