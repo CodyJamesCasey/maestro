@@ -35,13 +35,13 @@ export function play(pitch, xPercentage) {
     sound.source.start(ctx.currentTime);
   } else {
     let request = new XMLHttpRequest();
-    request.open('GET', 'Piano.ff.' + pitch + '.mp3', true);
+    request.open('GET', chrome.extension.getURL('/samples/mp3piano/Piano.ff.' + pitch + '.mp3'), true);
     request.responseType = 'arraybuffer';
     request.onload = function(e) {
       // Create a buffer from the response ArrayBuffer.
       ctx.decodeAudioData(this.response, function onSuccess(buffer) {
         // Store the sound in the audioCache
-        audioCache.set(pitch, this.response);
+        audioCache.set(pitch, buffer);
         sound.buffer = buffer;
         // Make the sound source use the buffer and start playing it
         sound.source.buffer = buffer;
