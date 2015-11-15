@@ -11,7 +11,13 @@ require('./volume-controller.scss');
 @ThemeDecorator(ThemeManager.getMuiTheme(MyRawTheme))
 export default class VolumeController extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.changeVolume = this.changeVolume.bind(this);
+  }
+
   changeVolume(event, value) {
+    this.props.changeVolume(value);
   }
 
   render() {
