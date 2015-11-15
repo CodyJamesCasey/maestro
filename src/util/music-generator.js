@@ -73,9 +73,8 @@ function generateInterval() {
   const notes = [];
 
   notes.push(generateNote());
-  notes.push(notes[0]);
-  notes[1].url = getRandomNoteUrl();
-
+  notes.push(generateNote());
+  
   return notes;
 }
 
@@ -113,7 +112,7 @@ export function getMusic() {
       return [generateNote()];
       break;
     case 'interval':
-      return [generateNote()];
+      return generateInterval();
       break;
     case 'chord':
       return generateChord();
