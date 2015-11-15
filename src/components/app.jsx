@@ -6,9 +6,9 @@ const MyRawTheme = require('./material-ui-theme');
 const ThemeManager = require('material-ui/lib/styles/theme-manager');
 const ThemeDecorator = require('material-ui/lib/styles/theme-decorator');
 
+import SettingsView from './settings-view';
 import Icon   from './icon';
 import SettingsButton from './settings-button';
-import BackButton from './back-button';
 import VolumeController from './volumecontroller';
 import { startMusic, stopMusic, changeVolume } from 'util/audio';
 
@@ -46,12 +46,7 @@ export default class App extends React.Component {
   }
 
   renderSettings() {
-    return (
-        <div className="app-container">
-          <BackButton handleClick={this.changeView.bind(this)} />
-          <h2 className="title settings-title">Settings</h2>
-        </div>
-    );
+    return ( <SettingsView changeView={this.changeView.bind(this)}/> );
   }
 
   render() {
