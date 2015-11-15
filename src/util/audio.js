@@ -23,7 +23,10 @@ export function startMusic() {
   generateInKeyNotes();
 
   intervalRef = setInterval( () => {
-    getMusic().forEach(function(music) { play(music) });
+    const music = getMusic();
+    music.forEach(function (note) {
+      play(note);
+    });
   }, getRandomNoteLength() );
 }
 
