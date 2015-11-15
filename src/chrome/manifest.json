@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
 
-  "name": "Music Generator",
+  "name": "Maestro",
   "description": "This extension will procedurally generate music in your browser!",
   "version": "1.0",
 

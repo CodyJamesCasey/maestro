@@ -18,7 +18,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="app-container">
-        <h1 className="title">Music Generator</h1>
+        <h1 className="title">Maestro</h1>
         <Icon />
         <VolumeController changeVolume={changeVolume} />
         <div className="buttons">

@@ -1,5 +1,5 @@
 {
-  "name": "music-generator",
+  "name": "maestro",
   "version": "1.0.0",
   "description": "Procedurally generate music in your browser!",
   "main": "index.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CodyJamesCasey/music-generator.git"
+    "url": "git+https://github.com/CodyJamesCasey/maestro.git"
   },
   "keywords": [
     "music",
@@ -20,9 +20,9 @@
   "author": "Cody Casey",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/CodyJamesCasey/music-generator/issues"
+    "url": "https://github.com/CodyJamesCasey/maestro/issues"
   },
-  "homepage": "https://github.com/CodyJamesCasey/music-generator#readme",
+  "homepage": "https://github.com/CodyJamesCasey/maestro#readme",
   "devDependencies": {
     "babel-core": "^5.8.25",
     "babel-loader": "^5.3.2",
