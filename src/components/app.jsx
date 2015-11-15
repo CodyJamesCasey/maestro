@@ -1,11 +1,17 @@
 import React  from 'react';
 
-import Button from './button';
+const RaisedButton = require('material-ui/lib/raised-button');
+
+const MyRawTheme = require('./material-ui-theme');
+const ThemeManager = require('material-ui/lib/styles/theme-manager');
+const ThemeDecorator = require('material-ui/lib/styles/theme-decorator');
+
 import Icon   from './icon';
 import VolumeController from './volumecontroller';
 
 require('./app.scss');
 
+@ThemeDecorator(ThemeManager.getMuiTheme(MyRawTheme))
 export default class App extends React.Component {
   state = {
 
@@ -26,8 +32,8 @@ export default class App extends React.Component {
         <Icon />
         <VolumeController />
         <div className="buttons">
-          <Button value="Jam" handleClick={this.startMusic} />
-          <Button value="Rest" handleClick={this.stopMusic} />
+          <RaisedButton label="Jam" primary={true} onClick={this.startMusic} />
+          <RaisedButton label="Rest" primary={true} onClick={this.stopMusic} />
         </div>
       </div>
     )

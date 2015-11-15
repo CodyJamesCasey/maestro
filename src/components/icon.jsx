@@ -1,12 +1,12 @@
 import React from 'react';
 
-require('./icon.scss');
+require('./svg.scss');
 
-export default class App extends React.Component {
+export default class Icon extends React.Component {
 
   render() {
     return (
-      <div className='icon-container'>
+      <div className='icon'>
         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 364.59 364.591">
         	<g>
         		<path d="M360.655,258.05V25c0-13.807-11.191-25-25-25H130.09c-13.807,0-25,11.193-25,25v206.27
