@@ -64,6 +64,7 @@ $darkest-purple: #4C0067; /* rgba( 76,  0,103,1) */
 html {
   width: 300px;
   height: 400px;
+  background-color: #5E2971;
 }
 
 body {
@@ -77,10 +78,13 @@ body {
 
 .app-container {
 	position: relative;
-  background-color: #5E2971;
   height: 100%;
 }
 
+::-webkit-scrollbar {
+	
+	color:blue;
+}
 .title {
   text-align: center;
   font-size: 32px;
