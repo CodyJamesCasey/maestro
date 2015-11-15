@@ -71,9 +71,11 @@ function generateNote() {
 
 function generateInterval() {
   const notes = [];
+
   notes.push(generateNote());
   notes.push(notes[0]);
   notes[1].url = getRandomNoteUrl();
+
   return notes;
 }
 
@@ -82,7 +84,6 @@ function generateChord() {
 
   const root = generateNote();
   notes.push(root);
-  console.log('root', root.note);
 
   let currentInterval = 0;
 
