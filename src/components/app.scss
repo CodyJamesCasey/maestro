@@ -1,0 +1,96 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/*le google fontz*/
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700);
+
+$lato: 'Lato', sans-serif;
+
+/* colors for extension */
+$purple: #5E2971;         /* rgba( 94, 41,113,1) */
+$gray: #7A797B;           /* rgba(122,121,123,1) */
+$gray-purple: #6C4F76;    /* rgba(108, 79,118,1) */
+$darker-purple: #51056C;  /* rgba( 81,  5,108,1) */
+$darkest-purple: #4C0067; /* rgba( 76,  0,103,1) */
+
+/* Color template by Paletton.com Â© 2002-2014 */
+/* http://paletton.com */
+
+html {
+  width: 300px;
+  height: 400px;
+}
+
+body {
+  height: 100%;
+}
+
+.app-container-wrapper {
+	height: 100%;
+	font-family: $lato;
+}
+
+.app-container {
+	position: relative;
+  background-color: #5E2971;
+  height: 100%;
+}
+
+.title {
+  text-align: center;
+  font-size: 32px;
+  padding-top: 32px;
+}
+
+.buttons {
+	position: absolute;
+  display: flex;
+	justify-content: space-around;
+  width: 100%;
+  bottom: 50px;
+}

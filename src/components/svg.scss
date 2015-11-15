@@ -1,0 +1,11 @@
+.icon {
+  position: absolute;
+  top: calc(50% - 64px);
+  width: 100%;
+  text-align: center;
+
+  svg {
+    width: 128px;
+    height: 128px;
+  }
+}
