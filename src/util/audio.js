@@ -9,9 +9,12 @@ const mainVolume = ctx.createGain();
 // Connect the main volume node to the context destination.
 mainVolume.connect(ctx.destination);
 var dynamicValues = ['ff','mf', 'pp'];
-export function play(pitch, xPercentage, yPercentage, volume ) {
 
-  mainVolume.gain.value = volume;
+export function changeVolume(newVolume) {
+  mainVolume.gain.value = newVolume;
+}
+
+export function play(pitch, xPercentage, yPercentage) {
   // Create an object with a sound source and a volume control.
   const sound = {
     source: ctx.createBufferSource(),
@@ -33,6 +36,7 @@ export function play(pitch, xPercentage, yPercentage, volume ) {
   let dynamicValuesNo = Math.round((Math.random()*2));
   // Make the sound source loop.
   sound.source.loop = false;
+
   // Check if the cache has the current pitch in memory already
   if (audioCache.has(pitch + dynamicValuesNo)) {
     let buffer = audioCache.get(pitch + dynamicValuesNo);
