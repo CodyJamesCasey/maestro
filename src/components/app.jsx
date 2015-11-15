@@ -8,24 +8,12 @@ const ThemeDecorator = require('material-ui/lib/styles/theme-decorator');
 
 import Icon   from './icon';
 import VolumeController from './volumecontroller';
-import { play, changeVolume } from 'util/audio';
+import { startMusic, stopMusic, changeVolume } from 'util/audio';
 
 require('./app.scss');
 
 @ThemeDecorator(ThemeManager.getMuiTheme(MyRawTheme))
 export default class App extends React.Component {
-
-  startMusic() {
-    console.log('starting');
-  }
-
-  stopMusic() {
-    console.log('stopping');
-  }
-
-  party = () => {
-    play('C4', -100 + (Math.random() * 200), -100 + (Math.random() * 200));
-  }
 
   render() {
     return (
@@ -34,9 +22,8 @@ export default class App extends React.Component {
         <Icon />
         <VolumeController changeVolume={changeVolume} />
         <div className="buttons">
-          <RaisedButton label="Jam" primary={true} onClick={this.startMusic} />
-          <RaisedButton label="Rest" primary={true} onClick={this.stopMusic} />
-          <RaisedButton label="Party" primary={true} onClick={this.party} />
+          <RaisedButton label="Jam" primary={true} onClick={startMusic} />
+          <RaisedButton label="Rest" primary={true} onClick={stopMusic} />
         </div>
       </div>
     )

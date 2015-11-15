@@ -7,11 +7,27 @@ const mainVolume = ctx.createGain();
 mainVolume.connect(ctx.destination);
 var dynamicValues = ['ff','mf', 'pp'];
 
+let intervalRef = null;
+
 export function changeVolume(newVolume) {
   mainVolume.gain.value = newVolume;
 }
 
-export function play(pitch, xPercentage, yPercentage) {
+export function stopMusic() {
+  clearInterval(intervalRef);
+}
+
+export function startMusic() {
+
+  var tempo = 120; // BPM (beats per minute)
+  var quarterNoteTime = 60 / tempo;
+
+  intervalRef = setInterval( () => {
+    play('C4', -100 + (Math.random() * 200), -100 + (Math.random() * 200), ctx.currentTime);
+  }, quarterNoteTime * 1000);
+}
+
+function play(pitch, xPercentage, yPercentage, time) {
   // Create an object with a sound source and a volume control.
   const sound = {
     source: ctx.createBufferSource(),
@@ -27,15 +43,9 @@ export function play(pitch, xPercentage, yPercentage) {
   // Setup the audio position of the sound
   //set z index to zero for 2d sound
   sound.panner.setPosition(xPercentage / 100, yPercentage / 100, 0.5);
-  console.log("x percentage: ", xPercentage / 100);
-  console.log("y percentage: ", yPercentage / 100);
-  console.log("pitch number: ", pitch);
   let dynamicValuesNo = Math.round((Math.random()*2));
   // Make the sound source loop.
   sound.source.loop = false;
-
-  // Check if the cache has the current pitch in memory already
-  console.log('/samples/mp3piano/Piano.' + dynamicValues[dynamicValuesNo] + '.' + pitch + '.mp3');
 
   let request = new XMLHttpRequest();
   request.open('GET', chrome.extension.getURL('/samples/mp3piano/Piano.' + dynamicValues[dynamicValuesNo] + '.' + pitch + '.mp3'), true);
@@ -47,7 +57,7 @@ export function play(pitch, xPercentage, yPercentage) {
       sound.buffer = buffer;
       // Make the sound source use the buffer and start playing it
       sound.source.buffer = buffer;
-      sound.source.start(ctx.currentTime);
+      sound.source.start(time);
     }, function onFailure() {
       console.error('Failed to load audio', arguments);
     });
