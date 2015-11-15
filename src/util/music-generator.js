@@ -57,7 +57,7 @@ function generateNote() {
   const note = currentKeyArray[Math.round(Math.random() * (currentKeyArray.length - 1))];
   const octave = Math.round(Math.random() * 7);
   const dynamicValue = dynamicValues[Math.round(Math.random() * (dynamicValues.length - 1))];
-
+  
   return {
     note: note,
     octave: octave,
@@ -72,8 +72,7 @@ function generateNote() {
 function generateInterval() {
   const notes = [];
   notes.push(generateNote());
-  notes.push(notes[0]);
-  notes[1].url = getRandomNoteUrl();
+  notes.push(generateNote());
   return notes;
 }
 
@@ -112,7 +111,7 @@ export function getMusic() {
       return [generateNote()];
       break;
     case 'interval':
-      return [generateNote()];
+      return generateInterval();
       break;
     case 'chord':
       return generateChord();
