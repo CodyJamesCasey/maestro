@@ -6,7 +6,7 @@
   "version": "1.0",
 
   "browser_action": {
-   "default_icon": "musical176.png",
+   "default_icon": "sound46.png",
    "default_popup": "popup.html"
   },
   "permissions": [
