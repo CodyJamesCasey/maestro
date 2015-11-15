@@ -1,4 +1,4 @@
-import { generateInKeyNotes, getRandomPanValue, getRandomNoteUrl, getRandomNoteLength } from './music-generator';
+import { getMusic, generateInKeyNotes, getRandomNoteLength } from './music-generator';
 
 // Create a new audio context.
 const ctx = new AudioContext();
@@ -23,12 +23,11 @@ export function startMusic() {
   generateInKeyNotes();
 
   intervalRef = setInterval( () => {
-    const url =  getRandomNoteUrl();
-    play(url, getRandomPanValue(), getRandomPanValue(), ctx.currentTime, getRandomNoteLength() );
+    getMusic().forEach(function(music) { play(music) });
   }, getRandomNoteLength() );
 }
 
-function play(url, xPercentage, yPercentage, startTime, endTime) {
+function play(note) {
   // Create an object with a sound source and a volume control.
 
   const sound = {
@@ -44,12 +43,12 @@ function play(url, xPercentage, yPercentage, startTime, endTime) {
   sound.panner.connect(mainVolume);
   // Setup the audio position of the sound
   //set z index to zero for 2d sound
-  sound.panner.setPosition(xPercentage / 100, yPercentage / 100, 0.5);
+  sound.panner.setPosition(note.xPan / 100, note.yPan / 100, 0.5);
   let dynamicValuesNo = Math.round((Math.random()*2));
   // Make the sound source loop.
   sound.source.loop = false;
   let request = new XMLHttpRequest();
-  request.open('GET', chrome.extension.getURL(url), true);
+  request.open('GET', chrome.extension.getURL(note.url), true);
 
   request.responseType = 'arraybuffer';
   request.onload = function(e) {
@@ -58,8 +57,8 @@ function play(url, xPercentage, yPercentage, startTime, endTime) {
       sound.buffer = buffer;
       // Make the sound source use the buffer and start playing it
       sound.source.buffer = buffer;
-      sound.source.start(startTime);
-      sound.source.stop(endTime);
+      sound.source.start(ctx.currentTime);
+      sound.source.stop(note.duration);
     }, function onFailure() {
       console.error('Failed to load audio', arguments);
     });
